@@ -20,12 +20,12 @@ namespace lemonadeStand2
         List<Customer> customerList = new List<Customer>();
         public Game()
         {
-            player      = new Player();
-            wallet      = new Wallet();
-            weather     = new Weather();           
-            day         = new Day();
-            customer    = new Customer();
-            inventory   = new Inventory();
+            player = new Player();
+            wallet = new Wallet();
+            weather = new Weather();
+            day = new Day();
+            customer = new Customer();
+            inventory = new Inventory();
 
         }
 
@@ -39,7 +39,6 @@ namespace lemonadeStand2
             StartGame();
             PrintCustomerList();
         }
-
         public void PrintCustomerList()
         {
             double totalSellPerDay = 0;
@@ -47,16 +46,18 @@ namespace lemonadeStand2
             {
                 Console.WriteLine(" Day: {0} Customer: {1} Amount made: ${2}", cust.Day, cust.CustID, cust.TotalCost);
                 totalSellPerDay = totalSellPerDay + cust.TotalCost;
+                //wallet.CurrentBalance = wallet.CurrentBalance + inventory.cupsOfLemonadesSold
             }
             Console.WriteLine("Total Sales: ${0}", totalSellPerDay);
-
+            //wallet.CurrentBalance = wallet.CurrentBalance + totalSellPerDay;
+            wallet.CurrentBalance = player.totalExpense + totalSellPerDay;
+            Console.WriteLine("New balance in Wallet: ${0}", wallet.CurrentBalance);
             Console.ReadLine();
         }
 
         public void DisplayWelcome()
         {
             Console.WriteLine(" Good Morning and Welcome to your Neighborhood's Lemonade Stand. \n");
-
         }
 
         public void PlayerIntroduced()
@@ -84,12 +85,11 @@ namespace lemonadeStand2
                     break;
             }
         }
-
         public void DisplaySupplyPrice()
         {
             Console.WriteLine(" Here are the Supplies needed and the Prices of each Items ");
             Console.WriteLine(" You will need 5 bottles of water, 4 lemons, 5 Sugar Cubes, 5 Ice cubes, and 15 empty cups to make 10 Cups of Lemonades. ");
-            Console.WriteLine(" Cost Per each item: Cup: $0.10, Water bottle: $1.00, Lemon: $0.25, Sugar Cube: $.05, Ice Cube: $0.05 each.");
+            Console.WriteLine(" Cost Per each item: Cup: $0.10, Water bottle: $1.00, Lemon: $0.25, Sugar Cube: $.10, Ice Cube: $0.10 each.");
             Console.WriteLine(" Press ENTER to Continue. \n");
             Console.ReadLine();
         }
@@ -100,7 +100,7 @@ namespace lemonadeStand2
 
             player.BuyCups();
             player.BuyWater();
-            player.BuyLemons();           
+            player.BuyLemons();
             player.BuyIce();
             player.BuySugars();
             player.MakeLemonades();
@@ -127,52 +127,54 @@ namespace lemonadeStand2
 
                 for (int i = 0; i < numberOfCustomer; i++)
                 {
-                    Console.WriteLine("Number of Lemonades sold to customer(s): {0} " , i );
-
-                    int cups = Convert.ToInt32(Console.ReadLine());
-                    Customer cust = new Customer();
-
-                    cust.CustID = i;
-                    cust.Day = day.day1;
-
-                    if (inventory.totalCupsOfLemonades > inventory.cupsOfLemonadesSold)
+                    try
                     {
-                        Console.WriteLine("Sorry, All Lemonades Sold Out!! \n");
-                       
+                        Console.WriteLine("Number of Lemonades sold to customer: {0} ", i);
+
+                        int cups = Convert.ToInt32(Console.ReadLine());
+
+                        Customer cust = new Customer();
+                        cust.CustID = i;
+                        cust.Day = day.day1;
+
+                        cust.TotalCost = cups * player.priceForEachCupOfLemonade;
+                        if (inventory.totalCupsOfLemonades < inventory.cupsOfLemonadesSold)
+                        {
+                            Console.WriteLine("Sorry, All Lemonades Sold Out!! \n");
+
+                        }
+                        //if (inventory.cupsOfLemonadesSold >= inventory.totalCupsOfLemonades)
+                        //{
+                        //}
+                        // Add total sell to current balance of the wallet
+                        wallet.CurrentBalance = wallet.CurrentBalance + cust.TotalCost;
+
+                        // Add this customer to the customer list
+                        customerList.Add(cust);
                     }
-                    if (inventory.cupsOfLemonadesSold >= inventory.totalCupsOfLemonades)
+
+                    catch (Exception e)
                     {
+                        Console.WriteLine(" Please ENTER a Number! ");
                     }
-                    // need to add if statement to check if the number cup entered greater then the total cup available,
-                    // write warning message and set cust.TotalCost equal to zero, else compute cust.TotalCost.
-                    // TODO: need to find out where is the total available cup value from before i add this logic
-
-
-                    cust.TotalCost = cups * player.priceForEachCupOfLemonade;
-
-                    // Add total sell to current balance of the wallet
-                    wallet.CurrentBalance = wallet.CurrentBalance + cust.TotalCost;
-
-                    // Add this customer to the customer list
-                    customerList.Add(cust);
-                    
                 }
                 Console.WriteLine(" List of Customers ", day.day1);
 
                 PrintCustomerList();
 
-                Console.Clear();
-              
+                //Console.Clear();
+
             }
             day.day1++;
-           
+            Console.WriteLine("", wallet.CurrentBalance = wallet.CurrentBalance + inventory.cupsOfLemonadesSold);
         }
         // print the customer list
+    }
       
 
 }
 
 
-}
+
 
 

@@ -23,7 +23,6 @@ namespace lemonadeStand2
           
             inventory   = new Inventory();
             wallet = new Wallet();
-
             //weather     = new Weather();
             //numberOfCustomer = 0;
             stand = new Stand();
@@ -36,6 +35,7 @@ namespace lemonadeStand2
         {
             day1 += 1;
             return day1;
+            
         }
 
         public double CustomerPerDay(Weather weather, Player player, Wallet wallet, Inventory inventory)
@@ -78,6 +78,7 @@ namespace lemonadeStand2
             Console.WriteLine("You have {0} customers today \n Press ENTER to Continue....", numberOfCustomer, inventory.totalCupsOfLemonades);
             wallet.CurrentRevenue = wallet.PerCupOfLemonade - (stand.PricePerWater + stand.PricePerLemon + stand.PricePerCup + stand.PricePerSugar + stand.PricePerIce);
             Console.ReadLine();
+           
             return numberOfCustomer;
         }
 

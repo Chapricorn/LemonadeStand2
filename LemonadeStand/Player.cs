@@ -50,14 +50,15 @@ namespace lemonadeStand2
         public void DisplayTotalBalance()
         {
             Console.WriteLine(" \n Total Expense = ${0} ", totalExpense);
-            Console.WriteLine(" Current Balance = ${0} ", wallet.CurrentBalance);
+            //wallet.CurrentBalance = wallet.CurrentBalance - totalExpense;
+            Console.WriteLine(" Current Balance = ${0} ", wallet.CurrentBalance/* - totalExpense*/);
             Console.WriteLine(" ");
 
         }
         public double BuyCups()
         {
-            Console.WriteLine(" How many Cups do you want to buy? Need 15 Cups to start");
-
+            Console.WriteLine(" You need 15 Cups to start and currently have ${0} available. ", wallet.CurrentBalance);
+            Console.WriteLine(" How many Cups do you want to buy?" );
             try
             {
                 double item = Convert.ToDouble(Console.ReadLine());
@@ -202,7 +203,7 @@ namespace lemonadeStand2
                     //Console.WriteLine(" Total {0} Sugar Cubes. \n", inventory.balanceOfSugarCubes);
 
                     // compute the total expense
-                    totalExpense = totalExpense + stand.PricePerCup * item;
+                    totalExpense = totalExpense + stand.PricePerSugar * item;
                     DisplayTotalBalance();
 
                 }
@@ -244,14 +245,14 @@ namespace lemonadeStand2
             wallet.displayCurrentBalance();
             {
                 {
-                    inventory.totalCupsOfLemonades  = inventory.totalCupsOfLemonades    += 15;
+                    inventory.totalCupsOfLemonades  = inventory.totalCupsOfLemonades    = 15;
                     inventory.balanceOfLemons       = inventory.balanceOfLemons         - 5;
                     inventory.balanceOfSugarCubes   = inventory.balanceOfSugarCubes     - 5;
                     inventory.balanceOfIce          = inventory.balanceOfIce            - 5;
                     inventory.balanceOfWaterBottles = inventory.balanceOfWaterBottles   - 5;
                     inventory.balanceOfCups         = inventory.balanceOfCups           - 15;
 
-                    Console.WriteLine(" Good, You've Made {0} cup(s) of Lemonade(s) to Sell. \n", inventory.totalCupsOfLemonades);
+                    Console.WriteLine(" Good, You've Made {0} cups of Lemonades to Sell. \n", inventory.totalCupsOfLemonades);
                     }
              
                 }
@@ -289,7 +290,6 @@ namespace lemonadeStand2
 
                 Console.WriteLine("Each cup of Lemonade cost: ${0}", price);
                 Console.WriteLine("You have {0} cups of lemonade, if you sell all your lemonades you will make ${1}", inventory.totalCupsOfLemonades, wallet.PerCupOfLemonade);
-                Console.ReadLine();
             }
             catch (Exception e)
             {

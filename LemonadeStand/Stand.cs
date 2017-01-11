@@ -25,11 +25,11 @@ namespace lemonadeStand2
 
         public Stand()
         {
-            PricePerWater = 1.25;
+            PricePerWater = 1.00;
             PricePerLemon = 0.25;
             PricePerCup = 0.10;
-            PricePerSugar = 1.00;
-            PricePerIce = 0.05;
+            PricePerSugar = .10;
+            PricePerIce = 0.10;
 
         }
         

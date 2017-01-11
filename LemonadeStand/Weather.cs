@@ -15,7 +15,6 @@ namespace lemonadeStand2
         public Weather()
         {
         }
-
         public string WeatherForecast()
         {
             temperatures            = ChooseWeather.Next(1, 4);
