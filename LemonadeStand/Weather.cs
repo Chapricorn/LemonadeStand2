@@ -17,9 +17,9 @@ namespace lemonadeStand2
         }
         public string WeatherForecast()
         {
-            temperatures            = ChooseWeather.Next(1, 4);
+            temperatures = ChooseWeather.Next(1, 4);
 
-            if (temperatures        == 1)
+            if (temperatures == 1)
             {
                 weatherType = "Sunny";
                 temperature = ChooseWeather.Next(80, 110);

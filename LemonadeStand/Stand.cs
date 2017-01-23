@@ -17,17 +17,17 @@ namespace lemonadeStand2
         //public double pricePerCup = 0.75;
 
         public double PricePerWater;
-        public double PricePerLemon;
         public double PricePerCup;
+        public double PricePerLemon;      
         public double PricePerSugar;
         public double PricePerIce;
 
 
         public Stand()
         {
-            PricePerWater = 1.00;
-            PricePerLemon = 0.25;
             PricePerCup = 0.10;
+            PricePerWater = 1.00;
+            PricePerLemon = 0.25;           
             PricePerSugar = .10;
             PricePerIce = 0.10;
 

@@ -19,7 +19,7 @@ namespace lemonadeStand2
 
         public void SupplyBalance()
         {
-            Console.WriteLine(" Your Total Items: {0} Empty Cups, {1} Bottles of Water, {2} Lemons, {3} Ice Cubes, {4} Sugar Cubes \n", balanceOfCups, balanceOfWaterBottles, balanceOfLemons, balanceOfIce, balanceOfSugarCubes);       
+            Console.WriteLine(" Your Total Items: {0} Empty Cups, {1} Bottles of Water, {2} Lemons, {3} Sugar Cubes, {4} Ice Cubes \n", balanceOfCups, balanceOfWaterBottles, balanceOfLemons, balanceOfIce, balanceOfSugarCubes);       
         }
         public double LemonadesMade()
         {

@@ -88,7 +88,7 @@ namespace lemonadeStand2
         public void DisplaySupplyPrice()
         {
             Console.WriteLine(" Here are the Supplies needed and the Prices of each Items ");
-            Console.WriteLine(" You will need 5 bottles of water, 4 lemons, 5 Sugar Cubes, 5 Ice cubes, and 15 empty cups to make 10 Cups of Lemonades. ");
+            Console.WriteLine(" You will need 15 empty cups, 5 bottles of water, 4 lemons, 5 Sugar Cubes, and 5 Ice cubes to make 15 Cups of Lemonades. ");
             Console.WriteLine(" Cost Per each item: Cup: $0.10, Water bottle: $1.00, Lemon: $0.25, Sugar Cube: $.10, Ice Cube: $0.10 each.");
             Console.WriteLine(" Press ENTER to Continue. \n");
             Console.ReadLine();
@@ -96,7 +96,7 @@ namespace lemonadeStand2
 
         public void GetSupply()
         {
-            player.totalExpense = 0; //initialize total expense to zero before buying anything
+            player.totalExpense = 0; 
 
             player.BuyCups();
             player.BuyWater();
@@ -119,12 +119,11 @@ namespace lemonadeStand2
                 Console.WriteLine(" It's Day {0} of 7 to sell your Lemonades", day.day1);
                 weather.WeatherForecast();
                 GetSupply();
-                //day.CustomerPerDay(weather, player, wallet, inventory,customer); 
 
+                //day.CustomerPerDay(weather, player, wallet, inventory,customer); 
                 double numberOfCustomer = day.CustomerPerDay(weather, player, wallet, inventory);
 
                 // Logic for sell lemonade to customers per day
-
                 for (int i = 0; i < numberOfCustomer; i++)
                 {
                     try
@@ -138,14 +137,7 @@ namespace lemonadeStand2
                         cust.Day = day.day1;
 
                         cust.TotalCost = cups * player.priceForEachCupOfLemonade;
-                        if (inventory.totalCupsOfLemonades < inventory.cupsOfLemonadesSold)
-                        {
-                            Console.WriteLine("Sorry, All Lemonades Sold Out!! \n");
-
-                        }
-                        //if (inventory.cupsOfLemonadesSold >= inventory.totalCupsOfLemonades)
-                        //{
-                        //}
+                       
                         // Add total sell to current balance of the wallet
                         wallet.CurrentBalance = wallet.CurrentBalance + cust.TotalCost;
 
@@ -164,6 +156,15 @@ namespace lemonadeStand2
 
                 //Console.Clear();
 
+            }
+            if (inventory.totalCupsOfLemonades < inventory.cupsOfLemonadesSold)
+            {
+                Console.WriteLine("Sorry, All Lemonades Sold Out!! \n");
+
+            }
+            else /*(inventory.cupsOfLemonadesSold >= inventory.totalCupsOfLemonades)*/
+            {
+                day.day1++;
             }
             day.day1++;
             Console.WriteLine("", wallet.CurrentBalance = wallet.CurrentBalance + inventory.cupsOfLemonadesSold);
